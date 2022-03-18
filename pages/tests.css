@@ -1,0 +1,12 @@
+.back-gray {
+    background-color: gray;
+}
+
+.m-5p {
+    margin: 5%;
+}
+
+.max-size {
+    max-width: 20%;
+    max-height: 50vh;
+}
