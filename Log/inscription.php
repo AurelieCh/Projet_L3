@@ -5,9 +5,6 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <p>Dans le formulaire précédent, vous avez fourni les
-        informations suivantes :</p>
-        
         <?php
             $serveur = "localhost";
             $dbname = "Base_de_Donnees_Nouveauregard";
