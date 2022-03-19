@@ -1,7 +1,44 @@
 <?php
-              if(isset($_GET['erreur'])){
-                  $err = $_GET['erreur'];
-                  if($err==1 || $err==2)
-                      echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
-              }
+    session_start();
+    if(isset($_POST['email']) && isset($_POST['motdepasse']))
+    {
+        // connexion à la base de données
+        $db_username = 'root';
+        $db_password = '3243';
+        $db_name     = 'Base_de_Donnees_NouveauRegard';
+        $db_host     = 'localhost';
+        $db = mysqli_connect($db_host, $db_username, $db_password,$db_name)
+               or die('could not connect to database');
+
+        // on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars pour éliminer toute attaque de type injection SQL et XSS
+        $email = mysqli_real_escape_string($db,htmlspecialchars($_POST['email'])); 
+        $password = mysqli_real_escape_string($db,htmlspecialchars($_POST['motdepasse']));
+
+        if($email !== "" && $password !== "")
+        {
+            $requete = "SELECT count(*) FROM utilisateur where 
+                  nom_utilisateur = '".$email."' and mot_de_passe = '".$password."' ";
+            $exec_requete = mysqli_query($db,$requete);
+            $reponse      = mysqli_fetch_array($exec_requete);
+            $count = $reponse['count(*)'];
+            if($count!=0) // nom d'utilisateur et mot de passe correctes
+            {
+               $_SESSION['email'] = $email;
+               header('Location: principale.php');
+            }
+            else
+            {
+               header('Location: connexion.php?erreur=1'); // utilisateur ou mot de passe incorrect
+            }
+        }
+        else
+        {
+           header('Location: connexion.php?erreur=2'); // utilisateur ou mot de passe vide
+        }
+    }
+    else
+    {
+       header('Location: connexion.php');
+    }
+    mysqli_close($db); // fermer la connexion
 ?>
