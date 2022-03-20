@@ -13,9 +13,9 @@
 
             $id = uniqid();
             $prenom = $_POST["nom"];
-            $nom : = $_POST["prenom"];
-            $email : = $_POST["email"];
-            $motdepasse : = $_POST["motdepasse"];
+            $nom = $_POST["prenom"];
+            $email = $_POST["email"];
+            $motdepasse = $_POST["motdepasse"];
 
             try{
                 //On se connecte à la BDD
@@ -23,7 +23,7 @@
                 $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
                 //On insère les données reçu
-                $sth = $dbco->prepare("INSERT INTO form(prenom, mail, age, sexe, pays)
+                $sth = $dbco->prepare("INSERT INTO Utilisateur(id, nom, prenom, email, motdepasse)
                                        VALUES(:id, :nom, :prenom, :email, :motdepasse)");
                 $sth->bindParam(':id',$id);
                 $sth->bindParam(':nom',$nom);
