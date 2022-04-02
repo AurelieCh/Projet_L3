@@ -1,37 +1,45 @@
-<?php
-               
-            if (isset($_POST['submit']))
-            {
-               
-            $Nom = htmlspecialchars(trim($_POST['Nom']));
-            $Prenom = htmlspecialchars(trim($_POST['Prenom']));
-            $email = htmlspecialchars(trim($_POST['email']));
-            $password = htmlspecialchars(trim($_POST['motdepasse']));
-            $repeatpassword = htmlspecialchars(trim($_POST['remotdepasse']));
-               
-            if ($Nom&&$Prenom&&$email&&$password&&$repeatpassword)
-                    {
-                    if (strlen($password)>=8)
-                        {
-                            if ($password==$repeatpassword)
-                            {
-                        // On crypte le mot de passe
-                            $password = md5($password);
-             
-             // on se connecte à MySQL et on sélectionne la base
-                $c = new mysqli ("localhost","root","","utilisateurs");
-              
-             //On créé la requête
-            $sql = "INSERT INTO newclient VALUES ('','$Nom','$Prenom','email','$password')";
-              
-                // On envoie la requête
-            $res = $c->query($sql);
-                   // on ferme la connexion
-            mysqli_close($c);
-              
-            }else echo "Les mots de passe ne sont pas identiques";
-            }else echo "Le mot de passe est trop court !";
-            }else echo "Veuillez saisir tous les champs !";
-               
-            }   
-?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page de traitement</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <?php
+            $serveur = "localhost";
+            $dbname = "Base_de_Donnees_Nouveauregard";
+            $user = "root";
+            $pass = "3243";
+
+            $id = uniqid();
+            $prenom = $_POST["nom"];
+            $nom = $_POST["prenom"];
+            $email = $_POST["email"];
+            $motdepasse = $_POST["motdepasse"];
+
+            try{
+                //On se connecte à la BDD
+                $dbco = new PDO("mysql:host=$serveur;dbname=$dbname",$user,$pass);
+                $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+                //On insère les données reçu
+                $sth = $dbco->prepare("INSERT INTO Utilisateur(id, nom, prenom, email, motdepasse)
+                                       VALUES(:id, :nom, :prenom, :email, :motdepasse)");
+                $sth->bindParam(':id',$id);
+                $sth->bindParam(':nom',$nom);
+                $sth->bindParam(':prenom',$prenom);
+                $sth->bindParam(':email',$email);
+                $sth->bindParam(':motdepasse',$motdepasse);
+                $sth->execute();
+        
+                //On renvoie l'utilisateur vers la page de remerciement
+                header("Location:thx.html");
+
+
+            }
+            catch(PDOException $e){
+                echo 'Erreur : '.$e->getMessage();
+            }
+        ?>
+    </body>
+</html>
