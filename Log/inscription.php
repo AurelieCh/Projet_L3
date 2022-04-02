@@ -14,32 +14,28 @@
             $pass = "";
 
             
-            $prenom = $_POST["nom"];
-            $nom = $_POST["prenom"];
+            $prenom = $_POST["prenom"];
+            $nom = $_POST["nom"];
             $email = $_POST["email"];
             $motdepasse = $_POST["motdepasse"];
             $remotdepasse = $_POST["remotdepasse"];
+            
 
 
             try{
                 //On se connecte à la BDD
                 $dbco = new PDO("mysql:host=$serveur;dbname=$dbname",$user,$pass);
                 $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-                /*
-                if($motdepasse != $remotdepasse || $nom == null || $prenom == null || $email == null || $motdepasse == null || $remotdepasse == null){
-                }
-                */
 
                 //On insère les données reçues
                 if($motdepasse == $remotdepasse){
-                $sth = $dbco->prepare("INSERT INTO Utilisateur(nom, prenom, email, motdepasse)
-                                       VALUES(:nom, :prenom, :email, :motdepasse)");
+                $sth = $dbco->prepare("INSERT INTO user(nom, prenom, email, password,date_inscription)
+                                       VALUES(:nom, :prenom, :email, :password,SYSDATE())");
                 
                 $sth->bindParam(':nom',$nom);
                 $sth->bindParam(':prenom',$prenom);
                 $sth->bindParam(':email',$email);
-                $sth->bindParam(':motdepasse',$motdepasse);
+                $sth->bindParam(':password',$motdepasse);
                 $sth->execute();
         
                 //On renvoie l'utilisateur vers la page de remerciement
