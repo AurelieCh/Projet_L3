@@ -1,5 +1,7 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
-
 <html>
     <head>
         <title>Page de traitement</title>
@@ -7,9 +9,11 @@
     </head>
     <body>
         <?php
-            
-            require_once '../Log/config.php';
 
+            $serveur = "localhost";
+            $dbname = "nouveau_regard";
+            $user = "root";
+            $pass = "";
 
             $titre = $_POST["titre"];
             $description = $_POST["description"];
@@ -46,20 +50,22 @@
                 $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 if(isset($_SESSION['email'])){
-                    $check = $dbco->query ('SELECT id FROM user WHERE email = "'.$_SESSION['email'].'"');
+                    $check = $dbco->query('SELECT id FROM user WHERE email = "'.$_SESSION['email'].'"');
                     $data = $check->fetch();
-                    $check2 = $dbco->query('SELECT id FROM admin WHERE user="'.$data['id'].'"');
+                    $r = $data['id'];
+                    $check2 = $dbco->query('SELECT id FROM admin WHERE user= "'.$r.'"');
                     $data2 = $check2->fetch();
+                    $r2 = $data2['id'];
                 }
                 //On insère les données reçues
-                $sth = $dbco->prepare("INSERT INTO activite(titre, description, corps, photo,date_creation,admin,slug)
+                $sth = $dbco->prepare("INSERT INTO activite (titre, description, corps, photo,date_creation,admin,slug)
                                     VALUES(:titre, :description, :corps, :photo,SYSDATE(),:admin,:slug");
                 
                 $sth->bindParam(':titre',$titre);
                 $sth->bindParam(':description',$description);
                 $sth->bindParam(':corps',$corps);
                 $sth->bindParam(':photo',$photo);
-                $sth->bindParam(':admin',$data2->id);
+                $sth->bindParam(':admin',$r2);
                 $sth->bindParam(':slug',$slug);
                 $sth->execute();
         

@@ -78,7 +78,7 @@ require_once '../Log/config.php';
                             </div>
                             <div class="col-12 mb-3">
                             <label class="form-label" for="Img">Lien Image</label><br>
-                            <input class="form-control" type="text" id="image" name="image" placeholder="Image" required>
+                            <input class="form-control" type="text" id="photo" name="photo" placeholder="Image" required>
                             </div>
                             <div class="col-12 mb-3">
                             <label class="form-label" for="Img">Slug</label><br>
