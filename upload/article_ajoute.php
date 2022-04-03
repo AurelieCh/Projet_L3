@@ -28,8 +28,6 @@
             </nav>
           <?php
           if(isset($_SESSION['email'])){
-              $check = $dbco->query ('SELECT nom,prenom FROM user WHERE email = "'.$_SESSION['email'].'"');
-              $data = $check->fetch();
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
                     <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
@@ -51,7 +49,7 @@
 
         <div class="container" style="height: 90vh;">
             <div class="text-center text-light">
-                <p>Merci de vous être inscrit sur le site de notre association !</p>
+                <p>Article ajouté !</p>
                 <form action="../index2.php"> <button class="btn btn-secondary" type="submit">Retourner à l'accueil</button></form>
             </div>
         </div>

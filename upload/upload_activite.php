@@ -17,11 +17,11 @@ require_once '../Log/config.php';
     </head> 
     <body class="d-flex flex-column min-vh-100 text-light">
         <div style="min-height: 100vh;  background-color: rgba(51, 51, 51, 0.9);">
-        <header class="container-fluid align-items-center mt-2" style="height: 10vh;">
-        <div class="d-flex ml-3 flex-column ">
-          <div class="row justify-content-between">
-            <h3 class="masthead-brand text-light">Bienvenue</h3>
-            <div class="row">
+        <header class="container-fluid align-items-center mt-2" style="height: 10vh; margin-bottom: 8vh !important;">
+          <div class="d-flex ml-3 flex-column ">
+            <div class="row justify-content-between">
+              <a href="../index2.php"><h3 class="masthead-brand text-decoration-none text-light">Accueil</h3></a>
+              <div class="row">
             <nav class="nav nav-masthead justify-content-center ml-2">
               <b><a class="nav-link nav-item text-light" href="../pages/activites.php">Activités</a></b>
               <b><a class="nav-link nav-item text-light" href="../pages/nouveautes.php">Nouveautés</a></b>
@@ -35,9 +35,9 @@ require_once '../Log/config.php';
             $data = $check->fetch();
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
-                      <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
-                      <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
-                      <a href="../Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a>
+                    <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
+                    <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
+                      <a href="../Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
                     </div>
                   </div>';
           }else{
@@ -48,9 +48,9 @@ require_once '../Log/config.php';
                     </div>
                   </div>';
           }
-          ?>  
-        </div>
-      </header>
+          ?>
+          </div>
+        </header>
       <?php
         if(isset($_SESSION['email'])){
                 $check = $dbco->query ('SELECT id FROM user WHERE email = "'.$_SESSION['email'].'"');
@@ -63,23 +63,31 @@ require_once '../Log/config.php';
                 echo '    
                 <div class="d-flex flex-column" style="margin-left: 10%; font-size: large; height: 90vh; margin-top: 10%;">
                     <div class="row 75vh">
-                        <form action="../Log/contact.php" method="post">
+                        <form method="post" action="../upload/upload_activite_form.php">
                             <div class="col-12 mb-3">
                             <label class="form-label" for="Titre">Titre</label><br>
-                            <input class="form-control" type="text" id="Titre" name="Titre" placeholder="Titre" required>
+                            <input class="form-control" type="text" id="titre" name="titre" placeholder="Titre" required>
                             </div>
                             <div class="col-12 mb-3">
                             <label class="form-label" for="Desc">Description</label><br>
-                            <input class="form-control" type="text" id="Desc" name="Desc" placeholder="Description" required>
+                            <input class="form-control" type="text" id="description" name="description" placeholder="Description" required>
                             </div>
-                            <div class="col-12 file-upload-wrapper mb-3">
-                                <label class="label" for="input-file-now">Uploader un fichier</label><br>
-                                <input type="file" id="input-file-now" class="file-upload" required/>
+                            <div class="col-12 mb-3">
+                            <label class="form-label" for="Corps">Corps</label><br>
+                            <input class="form-control" type="text" id="corps" name="corps" placeholder="Corps" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                            <label class="form-label" for="Img">Lien Image</label><br>
+                            <input class="form-control" type="text" id="image" name="image" placeholder="Image" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                            <label class="form-label" for="Img">Slug</label><br>
+                            <input class="form-control" type="text" id="slug" name="slug" placeholder=".../pages/[slug].php" required>
+                            </div>
+                            <div class="col-12 mt-2">
+                            <button type="submit"  class="btn btn-secondary">Envoyer</button>
                             </div>
                         </form>
-                        <div class="col-12 mt-2">
-                            <button type="submit"  class="btn btn-secondary">Envoyer</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -99,7 +107,7 @@ require_once '../Log/config.php';
             <div class="container p-4">
                 <section class="mb-4">
                     <p>
-                        L'association Nouveau Regard vous accueil tous les Mardi, Jeudi et Vendredi de 9h à 17h.
+                        L'association Nouveau Regard vous accueille tous les Mardis, Jeudis et Vendredis de 9h à 17h.
                     </p>
                 </section>
               
