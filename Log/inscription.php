@@ -36,7 +36,7 @@
               <div class="col-12 mb-4">
                 <h1>Inscription</h1>
               </div>
-              <form method="post" action="./inscription.php">
+              <form method="post" action="../Log/inscription_form.php">
                 <div class="col-12 mb-3">
                   <label class="form-label" for="nom">Nom</label><br>
                   <input class="form-control" type="text" id="nom" name="nom" placeholder="Nom" required>

@@ -31,8 +31,8 @@ session_start();
                 </nav>
               </div>
               <div class="d-md-flex mr-2 flex-column align-items-end">
-                <a href="../Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
-                <a href="../Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
+                <a class="text-light text-decoration-none">Nom</a> 
+                <a class="text-light text-decoration-none">Prénom</a>
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@ session_start();
 
         <div class="container" style="height: 90vh;">
             <div class="text-center text-light">
-                <p>Êtes vous sûr de vouloir vous déconnecter ?</p>
+                <p>Êtes-vous sûr de vouloir vous déconnecter ?</p>
                 
                 <form 
                 <?php

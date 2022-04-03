@@ -65,7 +65,7 @@
                 $sth->execute();
         
                 //On renvoie l'utilisateur vers la page de remerciement
-                header("Location:thx.php");
+                header("Location:thx_inscription.php");
             }
             catch(PDOException $e){
                 echo 'Erreur : '.$e->getMessage();

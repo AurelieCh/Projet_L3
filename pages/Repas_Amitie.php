@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -12,11 +15,11 @@
     </title>
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <div style="min-height: 100vh;  background-color: rgba(51, 51, 51, 0.9);">
-      <header class="container-fluid align-items-center mt-2" style="height: 10vh;">
-        <div class="d-flex ml-3 flex-column ">
-          <div class="row justify-content-between">
-            <h3 class="masthead-brand text-light">Bienvenue</h3>
+      <div class="flex-grow-1 mh-100" style="background-color: rgba(51, 51, 51, 0.9);">
+        <header class="container-fluid align-items-center mt-2" style="height: 10vh; margin-bottom: 8vh !important;">
+          <div class="d-flex ml-3 flex-column ">
+            <div class="row justify-content-between">
+              <a href="../index2.php"><h3 class="masthead-brand text-decoration-none text-light">Accueil</h3></a>
             <div class="row">
             <nav class="nav nav-masthead justify-content-center ml-2">
               <b><a class="nav-link nav-item text-light" href="../pages/activites.php">Activités</a></b>

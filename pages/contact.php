@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -70,7 +73,7 @@
                 </div>
                 <div class="col-12 mb-3">
                   <label class="form-label" for="sujet">Sujet</label><br>
-                  <input class="form-control" type="email" id="sujet" name="sujet" placeholder="Sujet" required>
+                  <input class="form-control" type="text" id="sujet" name="sujet" placeholder="Sujet" required>
                 </div>
                 <div class="col-12 mb-3">
                   <label class="form-label" for="message">Votre message :</label><br>
