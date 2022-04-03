@@ -30,6 +30,8 @@
           if(isset($_SESSION['email'])){
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
+                    <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
+                    <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
                       <a href="../Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
                     </div>
                   </div>';

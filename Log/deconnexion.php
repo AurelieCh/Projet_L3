@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../Log/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,7 +12,7 @@ session_start();
         <!-- Bootstrap + mon css -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>
-            Thx
+            Déconnexion
         </title>
     </head>
 
@@ -30,17 +31,24 @@ session_start();
                   <b><a class="nav-link nav-item text-light" href="../pages/contact.php">Contact</a></b>
                 </nav>
               </div>
+              <?php
+              if(isset($_SESSION['email'])){
+            $check = $dbco->query ('SELECT nom,prenom FROM user WHERE email = "'.$_SESSION['email'].'"');
+            $data = $check->fetch();
+            echo '
               <div class="d-md-flex mr-2 flex-column align-items-end">
-                <a class="text-light text-decoration-none">Nom</a> 
-                <a class="text-light text-decoration-none">Prénom</a>
-              </div>
+              <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
+                <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
+              </div>';
+              }
+              ?>
             </div>
           </div>
         </header>
 
         <div class="container" style="height: 90vh;">
             <div class="text-center text-light">
-                <p>Êtes-vous sûr de vouloir vous déconnecter ?</p>
+                <p>Vous êtes déconnecté.</p>
                 
                 <form 
                 <?php
@@ -48,7 +56,7 @@ session_start();
                         $_SESSION['email']=null;
                     }
                 ?>
-                action="../index2.php"> <button class="btn btn-secondary" type="submit">Se déconnecter</button> 
+                action="../index2.php"> <button class="btn btn-secondary" type="submit">Retour à l'accueil</button> 
                 </form>
             </div>
         </div>

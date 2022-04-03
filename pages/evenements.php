@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../Log/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,10 +30,14 @@ session_start();
               <b><a class="nav-link nav-item text-light" href="../pages/dons.php">Dons</a></b>
               <b><a class="nav-link nav-item text-light" href="../pages/contact.php">Contact</a></b>
             </nav>
-          <?php
+            <?php
           if(isset($_SESSION['email'])){
+            $check = $dbco->query ('SELECT nom,prenom FROM user WHERE email = "'.$_SESSION['email'].'"');
+            $data = $check->fetch();
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
+                    <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
+                    <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
                       <a href="../Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
                     </div>
                   </div>';

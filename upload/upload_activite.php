@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../Log/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,46 +31,70 @@ session_start();
             </nav>
           <?php
           if(isset($_SESSION['email'])){
+            $check = $dbco->query ('SELECT nom,prenom FROM user WHERE email = "'.$_SESSION['email'].'"');
+            $data = $check->fetch();
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
-                      <a href="Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
+                      <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
+                      <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
+                      <a href="../Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a>
                     </div>
                   </div>';
           }else{
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
-                      <a href="Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
-                      <a href="Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
+                      <a href="../Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
+                      <a href="../Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
                     </div>
                   </div>';
           }
           ?>  
         </div>
       </header>
+      <?php
+        if(isset($_SESSION['email'])){
+                $check = $dbco->query ('SELECT id FROM user WHERE email = "'.$_SESSION['email'].'"');
+                $data = $check->fetch();
+                $check2 = $dbco->query('SELECT id FROM admin WHERE user="'.$data['id'].'"');
+                $data2 = $check2->fetch();
+                $row = $check2->rowCount();
 
-            <div class="d-flex flex-column" style="margin-left: 10%; font-size: large; height: 90vh; margin-top: 10%;">
-                <div class="row 75vh">
-                    <form action="../Log/contact.php" method="post">
-                        <div class="col-12 mb-3">
-                          <label class="form-label" for="Titre">Titre</label><br>
-                          <input class="form-control" type="text" id="Titre" name="Titre" placeholder="Titre de l'article" required>
+                if($row == 1){
+                echo '    
+                <div class="d-flex flex-column" style="margin-left: 10%; font-size: large; height: 90vh; margin-top: 10%;">
+                    <div class="row 75vh">
+                        <form action="../Log/contact.php" method="post">
+                            <div class="col-12 mb-3">
+                            <label class="form-label" for="Titre">Titre</label><br>
+                            <input class="form-control" type="text" id="Titre" name="Titre" placeholder="Titre" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                            <label class="form-label" for="Desc">Description</label><br>
+                            <input class="form-control" type="text" id="Desc" name="Desc" placeholder="Description" required>
+                            </div>
+                            <div class="col-12 file-upload-wrapper mb-3">
+                                <label class="label" for="input-file-now">Uploader un fichier</label><br>
+                                <input type="file" id="input-file-now" class="file-upload" required/>
+                            </div>
+                        </form>
+                        <div class="col-12 mt-2">
+                            <button type="submit"  class="btn btn-secondary">Envoyer</button>
                         </div>
-                        <div class="col-12 mb-3">
-                          <label class="form-label" for="Desc">Description</label><br>
-                          <input class="form-control" type="text" id="Desc" name="Desc" placeholder="Description de l'adctivité, événement..." required>
-                        </div>
-                        <div class="col-12 file-upload-wrapper mb-3">
-                            <label class="label" for="input-file-now">Uploader un fichier</label><br>
-                            <input type="file" id="input-file-now" class="file-upload" required/>
-                        </div>
-                    </form>
-                    <div class="col-12 mt-2">
-                        <button type="submit"  class="btn btn-secondary">Envoyer</button>
                     </div>
                 </div>
             </div>
-        </div>
-
+            ';
+                }else{
+                echo '<div class="container" style="height: 90vh;">
+                <div class="text-center text-light">
+                    <p>Erreur 503</p>
+                    
+                    <form action="../index2.php"> <button class="btn btn-secondary" type="submit">Accueil</button></form>
+                </div>
+            </div>';
+        }
+    }
+?>
         <footer class="text-center text-white mt-4" style="background-color: rgba(51, 51, 51, 0.9);">
             <div class="container p-4">
                 <section class="mb-4">

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../Log/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,8 +33,12 @@ session_start();
             </nav>
           <?php
           if(isset($_SESSION['email'])){
+            $check = $dbco->query ('SELECT nom,prenom FROM user WHERE email = "'.$_SESSION['email'].'"');
+            $data = $check->fetch();
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
+                    <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
+                    <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
                       <a href="../Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
                     </div>
                   </div>';
@@ -48,12 +53,22 @@ session_start();
           ?>  
         </div>
         </header>
+        <?php 
+            if(isset($_SESSION['email'])){
+              $check = $dbco->query ('SELECT id FROM user WHERE email = "'.$_SESSION['email'].'"');
+              $data = $check->fetch();
+              $check2 = $dbco->query('SELECT id FROM admin WHERE user="'.$data['id'].'"');
+              $data2 = $check2->fetch();
+              $row = $check2->rowCount();
 
-        <!--Test bouton admin caché, à arranger avec symphony-->
-        <div id="boutonAdmin1" style="align-items: flex-start; margin-bottom: 4vh; margin-left: 6%; display: none;">
-          <button type="submit"  class="btn btn-primary">Ajouter une activité</button>
-        </div>
-
+              if($row == 1){
+                echo '
+                <!--Test bouton admin-->
+                <form action="../upload/upload_activite.php" style="align-items: flex-start; margin-bottom: 4vh; margin-left: 6%; display: contents"><button class="btn btn-primary" type="submit">Ajouter un article</button></form>
+              ';
+              }
+            }
+          ?>
         <!--Pour toutes les cartes, ce sera max 120 caractères, au moment de l'implémentation de la page upload-->
         <div class="row" style="margin-bottom: 5%; margin-left: 5%; max-width: 95%;">
           <div class="col-sm-6 col-xl-4 mb-4 mt-4">

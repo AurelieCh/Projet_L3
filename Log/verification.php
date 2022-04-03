@@ -1,13 +1,7 @@
-<?php
-  session_start();
-?>
+
 <?php
    session_start();
       require_once 'config.php';
-      $serveur = "localhost";
-      $dbname = "nouveau_regard";
-      $user = "root";
-      $pass = "";
 
 
 
@@ -28,6 +22,8 @@
 
       if($row == 1){
          if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $password = hash('sha256',$password);
+            $data['password'] = hash('sha256',$data['password']);
             if($data['password'] === $password){
                $_SESSION['email'] = $data['email'];
                header("Location: ../index2.php");
