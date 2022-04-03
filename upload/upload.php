@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -13,26 +16,36 @@
     </head> 
     <body class="d-flex flex-column min-vh-100 text-light">
         <div style="min-height: 100vh;  background-color: rgba(51, 51, 51, 0.9);">
-            <header class="container-fluid align-items-center mt-2" style="height: 10vh; margin-bottom: 8vh !important;">
-                <div class="d-flex ml-3 flex-column ">
-                  <div class="row justify-content-between">
-                    <a href="../index2.php"><h3 class="masthead-brand text-decoration-none text-light">Accueil</h3></a>
-                    <div class="row">
-                      <nav class="nav nav-masthead justify-content-center ml-2">
-                        <b><a class="nav-link nav-item text-light" href="../pages/activites.php">Activités</a></b>
-                        <b><a class="nav-link nav-item text-light" href="../pages/nouveautes.php">Nouveautés</a></b>
-                        <b><a class="nav-link nav-item text-light" href="../pages/evenements.php">Événements</a></b>
-                        <b><a class="nav-link nav-item text-light" href="../pages/dons.php">Dons</a></b>
-                        <b><a class="nav-link nav-item text-light" href="../pages/contact.php">Contact</a></b>
-                      </nav>
-                    </div>
+        <header class="container-fluid align-items-center mt-2" style="height: 10vh;">
+        <div class="d-flex ml-3 flex-column ">
+          <div class="row justify-content-between">
+            <h3 class="masthead-brand text-light">Bienvenue</h3>
+            <div class="row">
+            <nav class="nav nav-masthead justify-content-center ml-2">
+              <b><a class="nav-link nav-item text-light" href="../pages/activites.php">Activités</a></b>
+              <b><a class="nav-link nav-item text-light" href="../pages/nouveautes.php">Nouveautés</a></b>
+              <b><a class="nav-link nav-item text-light" href="../pages/evenements.php">Événements</a></b>
+              <b><a class="nav-link nav-item text-light" href="../pages/dons.php">Dons</a></b>
+              <b><a class="nav-link nav-item text-light" href="../pages/contact.php">Contact</a></b>
+            </nav>
+          <?php
+          if(isset($_SESSION['email'])){
+            echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
-                      <a href="../Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
-                      <a href="../Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
+                      <a href="Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
                     </div>
-                  </div>
-                </div>
-              </header>
+                  </div>';
+          }else{
+            echo '</div>
+                    <div class="d-md-flex mr-2 flex-column align-items-end">
+                      <a href="Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
+                      <a href="Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
+                    </div>
+                  </div>';
+          }
+          ?>  
+        </div>
+      </header>
 
             <div class="d-flex flex-column" style="margin-left: 10%; font-size: large; height: 90vh; margin-top: 10%;">
                 <div class="row 75vh">

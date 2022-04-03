@@ -19,19 +19,29 @@
               <div class="row justify-content-between">
                 <a href="../index2.php"><h3 class="masthead-brand text-decoration-none text-light">Accueil</h3></a>
                 <div class="row">
-                  <nav class="nav nav-masthead justify-content-center ml-2">
-                    <b><a class="nav-link nav-item text-light" href="./activites.php">Activités</a></b>
-                    <b><a class="nav-link nav-item text-light" href="./nouveautes.php">Nouveautés</a></b>
-                    <b><a class="nav-link nav-item text-light" href="./evenements.php">Événements</a></b>
-                    <b><a class="nav-link nav-item text-light" href="./dons.php">Dons</a></b>
-                    <b><a class="nav-link nav-item text-light" href="./contact.php">Contact</a></b>
-                  </nav>
-                </div>
-                <div class="d-md-flex mr-2 flex-column align-items-end">
-                  <a href="../Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
-                  <a href="../Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
-                </div>
-              </div>
+            <nav class="nav nav-masthead justify-content-center ml-2">
+              <b><a class="nav-link nav-item text-light" href="../pages/activites.php">Activités</a></b>
+              <b><a class="nav-link nav-item text-light" href="../pages/nouveautes.php">Nouveautés</a></b>
+              <b><a class="nav-link nav-item text-light" href="../pages/evenements.php">Événements</a></b>
+              <b><a class="nav-link nav-item text-light" href="../pages/dons.php">Dons</a></b>
+              <b><a class="nav-link nav-item text-light" href="../pages/contact.php">Contact</a></b>
+            </nav>
+          <?php
+          if(isset($_SESSION['email'])){
+            echo '</div>
+                    <div class="d-md-flex mr-2 flex-column align-items-end">
+                      <a href="../Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
+                    </div>
+                  </div>';
+          }else{
+            echo '</div>
+                    <div class="d-md-flex mr-2 flex-column align-items-end">
+                      <a href="../Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
+                      <a href="../Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
+                    </div>
+                  </div>';
+          }
+          ?>  
             </div>
           </header>
 
