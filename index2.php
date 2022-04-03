@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -19,18 +22,28 @@
             <h3 class="masthead-brand text-light">Bienvenue</h3>
             <div class="row">
             <nav class="nav nav-masthead justify-content-center ml-2">
-              <b><a class="nav-link nav-item text-light" href="pages/activites.html">Activités</a></b>
-              <b><a class="nav-link nav-item text-light" href="pages/nouveautes.html">Nouveautés</a></b>
-              <b><a class="nav-link nav-item text-light" href="pages/evenements.html">Événements</a></b>
-              <b><a class="nav-link nav-item text-light" href="pages/dons.html">Dons</a></b>
-              <b><a class="nav-link nav-item text-light" href="pages/contact.html">Contact</a></b>
+              <b><a class="nav-link nav-item text-light" href="pages/activites.php">Activités</a></b>
+              <b><a class="nav-link nav-item text-light" href="pages/nouveautes.php">Nouveautés</a></b>
+              <b><a class="nav-link nav-item text-light" href="pages/evenements.php">Événements</a></b>
+              <b><a class="nav-link nav-item text-light" href="pages/dons.php">Dons</a></b>
+              <b><a class="nav-link nav-item text-light" href="pages/contact.php">Contact</a></b>
             </nav>
-          </div>
-            <div class="d-md-flex mr-2 flex-column align-items-end">
-              <a href="Log/inscription.html" class="text-light text-decoration-none">Inscription</a> 
-              <a href="Log/connexion.html" class="text-light text-decoration-none">Connexion</a>
-            </div>
-          </div>
+          <?php
+          if(isset($_SESSION['email'])){
+            echo '</div>
+                    <div class="d-md-flex mr-2 flex-column align-items-end">
+                      <a href="Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
+                    </div>
+                  </div>';
+          }else{
+            echo '</div>
+                    <div class="d-md-flex mr-2 flex-column align-items-end">
+                      <a href="Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
+                      <a href="Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
+                    </div>
+                  </div>';
+          }
+          ?>  
         </div>
       </header>
 

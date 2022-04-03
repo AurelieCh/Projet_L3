@@ -17,19 +17,19 @@
           <header class="container-fluid align-items-center mt-2 mb-4" style="height: 10vh;">
             <div class="d-flex ml-3 flex-column ">
               <div class="row justify-content-between">
-                <a href="../index2.html"><h3 class="masthead-brand text-decoration-none text-light">Accueil</h3></a>
+                <a href="../index2.php"><h3 class="masthead-brand text-decoration-none text-light">Accueil</h3></a>
                 <div class="row">
                   <nav class="nav nav-masthead justify-content-center ml-2">
-                    <b><a class="nav-link nav-item text-light" href="./activites.html">Activités</a></b>
-                    <b><a class="nav-link nav-item text-light" href="./nouveautes.html">Nouveautés</a></b>
-                    <b><a class="nav-link nav-item text-light" href="./evenements.html">Événements</a></b>
-                    <b><a class="nav-link nav-item text-light" href="./dons.html">Dons</a></b>
-                    <b><a class="nav-link nav-item text-light" href="./contact.html">Contact</a></b>
+                    <b><a class="nav-link nav-item text-light" href="./activites.php">Activités</a></b>
+                    <b><a class="nav-link nav-item text-light" href="./nouveautes.php">Nouveautés</a></b>
+                    <b><a class="nav-link nav-item text-light" href="./evenements.php">Événements</a></b>
+                    <b><a class="nav-link nav-item text-light" href="./dons.php">Dons</a></b>
+                    <b><a class="nav-link nav-item text-light" href="./contact.php">Contact</a></b>
                   </nav>
                 </div>
                 <div class="d-md-flex mr-2 flex-column align-items-end">
-                  <a href="../Log/inscription.html" class="text-light text-decoration-none">Inscription</a> 
-                  <a href="../Log/connexion.html" class="text-light text-decoration-none">Connexion</a>
+                  <a href="../Log/inscription.php" class="text-light text-decoration-none">Inscription</a> 
+                  <a href="../Log/connexion.php" class="text-light text-decoration-none">Connexion</a>
                 </div>
               </div>
             </div>
@@ -72,7 +72,7 @@
               </form>
             </div>
             <div class="d-flex align-items-start flex-column" style="margin-top: 4vh">
-              Si vous souhaitez avoir plus d'informations sur la formule d'adhésion,<a href="./infos.html" > cliquez ici</a>
+              Si vous souhaitez avoir plus d'informations sur la formule d'adhésion,<a href="./infos.php" > cliquez ici</a>
             </div>
           </div>
 
