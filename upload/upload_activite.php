@@ -31,7 +31,7 @@ require_once '../Log/config.php';
             </nav>
           <?php
           if(isset($_SESSION['email'])){
-            $check = $dbco->query ('SELECT nom,prenom FROM user WHERE email = "'.$_SESSION['email'].'"');
+            $check = $dbco->query('SELECT id,nom,prenom FROM user WHERE email = "'.$_SESSION['email'].'"');
             $data = $check->fetch();
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
@@ -65,23 +65,23 @@ require_once '../Log/config.php';
                     <div class="row 75vh">
                         <form method="post" action="../upload/upload_activite_form.php">
                             <div class="col-12 mb-3">
-                            <label class="form-label" for="Titre">Titre</label><br>
+                            <label class="form-label" for="titre">Titre</label><br>
                             <input class="form-control" type="text" id="titre" name="titre" placeholder="Titre" required>
                             </div>
                             <div class="col-12 mb-3">
-                            <label class="form-label" for="Desc">Description</label><br>
+                            <label class="form-label" for="description">Description</label><br>
                             <input class="form-control" type="text" id="description" name="description" placeholder="Description" required>
                             </div>
                             <div class="col-12 mb-3">
-                            <label class="form-label" for="Corps">Corps</label><br>
+                            <label class="form-label" for="corps">Corps</label><br>
                             <input class="form-control" type="text" id="corps" name="corps" placeholder="Corps" required>
                             </div>
                             <div class="col-12 mb-3">
-                            <label class="form-label" for="Img">Lien Image</label><br>
+                            <label class="form-label" for="photo">Lien Image</label><br>
                             <input class="form-control" type="text" id="photo" name="photo" placeholder="Image" required>
                             </div>
                             <div class="col-12 mb-3">
-                            <label class="form-label" for="Img">Slug</label><br>
+                            <label class="form-label" for="slug">Slug</label><br>
                             <input class="form-control" type="text" id="slug" name="slug" placeholder=".../pages/[slug].php" required>
                             </div>
                             <div class="col-12 mt-2">

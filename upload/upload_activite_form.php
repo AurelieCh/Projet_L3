@@ -19,6 +19,7 @@ session_start();
             $description = $_POST["description"];
             $corps = $_POST["corps"];
             $photo = $_POST["photo"];
+            $slug = $_POST["slug"];
 
             /*  Requête pour vérifier si l'email existe déjà dans la base de données.
             $db = mysqli_connect($db_host, $db_username, $db_password,$db_name)
@@ -52,20 +53,19 @@ session_start();
                 if(isset($_SESSION['email'])){
                     $check = $dbco->query('SELECT id FROM user WHERE email = "'.$_SESSION['email'].'"');
                     $data = $check->fetch();
-                    $r = $data['id'];
-                    $check2 = $dbco->query('SELECT id FROM admin WHERE user= "'.$r.'"');
-                    $data2 = $check2->fetch();
-                    $r2 = $data2['id'];
+                    $id = $data['id'];
+                    $iduser = (int)$id[0];
+                    
                 }
                 //On insère les données reçues
-                $sth = $dbco->prepare("INSERT INTO activite (titre, description, corps, photo,date_creation,admin,slug)
-                                    VALUES(:titre, :description, :corps, :photo,SYSDATE(),:admin,:slug");
+                $sth = $dbco->prepare("INSERT INTO activite (titre, description, corps, photo,date_creation,user,slug)
+                                    VALUES(:titre, :description, :corps, :photo,SYSDATE(),:user,:slug)");
                 
                 $sth->bindParam(':titre',$titre);
                 $sth->bindParam(':description',$description);
                 $sth->bindParam(':corps',$corps);
                 $sth->bindParam(':photo',$photo);
-                $sth->bindParam(':admin',$r2);
+                $sth->bindParam(':user',$iduser);
                 $sth->bindParam(':slug',$slug);
                 $sth->execute();
         

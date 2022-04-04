@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once '../Log/config.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -28,6 +32,8 @@
             </nav>
           <?php
           if(isset($_SESSION['email'])){
+            $check = $dbco->query ('SELECT nom,prenom FROM user WHERE email = "'.$_SESSION['email'].'"');
+            $data = $check->fetch();
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
                     <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
