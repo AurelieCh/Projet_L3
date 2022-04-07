@@ -37,9 +37,9 @@ require_once '../Log/config.php';
             $data = $check->fetch();
             echo '</div>
                     <div class="d-md-flex mr-2 flex-column align-items-end">
-                    <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
-                    <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
-                      <a href="../Log/deconnexion.php" class="text-light text-decoration-none">Déconnexion</a> 
+                    <span class="text-light">'.$data['nom'].'</span>
+                    <span class="text-light">'.$data['prenom'].'</span>
+                    <a href="../Log/deconnexion.php">Déconnexion</a>  
                     </div>
                   </div>';
           }else{
@@ -53,7 +53,9 @@ require_once '../Log/config.php';
           ?>  
         </div>
         </header>
-        <?php 
+
+        <div style="margin-left: 7rem; margin-bottom: 3rem;">
+          <?php 
             if(isset($_SESSION['email'])){
               $check = $dbco->query ('SELECT id FROM user WHERE email = "'.$_SESSION['email'].'"');
               $data = $check->fetch();
@@ -64,11 +66,12 @@ require_once '../Log/config.php';
               if($row == 1){
                 echo '
                 <!--Test bouton admin-->
-                <form action="../upload/upload_activite.php" style="align-items: flex-start; margin-bottom: 4vh; margin-left: 6%; display: contents"><button class="btn btn-primary" type="submit">Ajouter un article</button></form>
+                <form action="../upload/upload_activite.php" style="align-items: flex-start; margin-bottom: 4vh; display: contents"><button class="btn btn-primary" type="submit">Ajouter un article</button></form>
               ';
               }
             }
           ?>
+        </div>
         <!--Pour toutes les cartes, ce sera max 120 caractères, au moment de l'implémentation de la page upload-->
         <div class="row" style="margin-bottom: 5%; margin-left: 5%; max-width: 95%;">
           <div class="col-sm-6 col-xl-4 mb-4 mt-4">

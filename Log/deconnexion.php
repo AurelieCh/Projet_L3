@@ -37,8 +37,8 @@ require_once '../Log/config.php';
             $data = $check->fetch();
             echo '
               <div class="d-md-flex mr-2 flex-column align-items-end">
-              <a class="text-light text-decoration-none">"'.$data['nom'].'"</a>
-                <a class="text-light text-decoration-none">"'.$data['prenom'].'"</a>
+                <span class="text-light">'.$data['nom'].'</span>
+                <span class="text-light">'.$data['prenom'].'</span>
               </div>';
               }
               ?>
